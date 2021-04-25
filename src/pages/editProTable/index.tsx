@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import type { ProColumns } from '@ant-design/pro-table';
 import { EditableProTable } from '@ant-design/pro-table';
 import ProField from '@ant-design/pro-field';
 import ProCard from '@ant-design/pro-card';
-import { Button } from 'antd';
+import { Button, Form } from 'antd';
 
 type DataSourceType = {
   id: React.Key;
@@ -11,6 +11,7 @@ type DataSourceType = {
   decs?: string;
   state?: string;
   created_at?: string;
+  fileList?: any[]
   children?: DataSourceType[];
 };
 
@@ -21,13 +22,10 @@ const defaultData: DataSourceType[] = [
     decs: '这个活动真好玩',
     state: 'open',
     created_at: '2020-05-26T09:42:56Z',
-  },
-  {
-    id: 624691229,
-    title: '活动名称二',
-    decs: '这个活动真好玩',
-    state: 'closed',
-    created_at: '2020-05-26T08:19:22Z',
+    fileList: [{
+      fileName: '这是一个测试图片',
+      url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2109030888,3411151480&fm=26&gp=0.jpg'
+    }]
   },
 ];
 
@@ -37,6 +35,38 @@ const EditTable: React.Fc = () => {
   );
   const [dataSource, setDataSource] = useState<DataSourceType[]>(() => defaultData);
 
+  const [ editForm ] = Form.useForm()
+
+  const getTableInfo = () => {
+    const newData = [
+      {
+        id: 624748504,
+        title: '活动名称一',
+        decs: '这个活动真好玩',
+        state: 'open',
+        created_at: '2020-05-26T09:42:56Z',
+        fileList: [{
+          uid: '1',
+          fileName: '这是一个测试图片',
+          url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2109030888,3411151480&fm=26&gp=0.jpg'
+        }]
+      },
+      {
+        id: 624691229,
+        title: '活动名称二',
+        decs: '这个活动真好玩',
+        state: 'closed',
+        created_at: '2020-05-26T08:19:22Z',
+        fileList: []
+      },
+    ]
+    setEditableRowKeys(newData.map(item => item.id))
+    setDataSource(newData)
+  }
+
+  useEffect(() => {
+    getTableInfo()
+  }, [])
   const columns: ProColumns<DataSourceType>[] = [
     {
       title: '活动名称',
@@ -84,6 +114,19 @@ const EditTable: React.Fc = () => {
       dataIndex: 'decs',
     },
     {
+      title: '文件',
+      dataIndex: 'fileList',
+      editable: false,
+      render: (val: any) => (
+        <div>
+          {val && val.length ? val.map(item => 
+            <div key={item.uid} style={{width: '200px', height: '150px', overflow: 'hidden'}}>
+              <img style={{width: '100%'}} src={item.url} />
+            </div>) : ''}
+        </div>
+      )
+    },
+    {
       title: '操作',
       valueType: 'option',
       width: 250,
@@ -112,9 +155,10 @@ const EditTable: React.Fc = () => {
             <Button
               type="primary"
               key="save"
-              onClick={() => {
+              onClick={async() => {
                 // dataSource 就是当前数据，可以调用 api 将其保存
                 console.log(dataSource);
+                await editForm.validateFields()
               }}
             >
               保存数据
@@ -124,6 +168,7 @@ const EditTable: React.Fc = () => {
         editable={{
           type: 'multiple',
           editableKeys,
+          form: editForm,
           actionRender: (row, config, defaultDoms) => {
             return [defaultDoms.delete];
           },
