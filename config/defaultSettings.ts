@@ -5,6 +5,9 @@ const Settings: LayoutSettings & {
   logo?: string;
 } = {
   navTheme: 'light',
+  menu: {
+    locale: false,  //关闭国际化
+  },
   // 拂晓蓝
   primaryColor: '#1890ff',
   layout: 'mix',

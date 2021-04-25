@@ -43,7 +43,7 @@
     component: './TableList',
   },
   {
-    name: 'welcome',
+    name: '嵌套组件',
     icon: 'table',
     path: '/project',
     component: './project',
