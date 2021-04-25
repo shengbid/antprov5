@@ -49,6 +49,12 @@
     component: './project',
   },
   {
+    name: '可编辑表格',
+    icon: 'table',
+    path: '/editProTable',
+    component: './editProTable',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
