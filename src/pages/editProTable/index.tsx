@@ -120,7 +120,7 @@ const EditTable: React.Fc = () => {
       render: (val: any) => (
         <div>
           {val && val.length ? val.map(item => 
-            <div key={item.uid} style={{width: '200px', height: '150px', overflow: 'hidden'}}>
+            <div key={item.uid} style={{width: '100px', height: '50px', overflow: 'hidden'}}>
               <img style={{width: '100%'}} src={item.url} />
             </div>) : ''}
         </div>
