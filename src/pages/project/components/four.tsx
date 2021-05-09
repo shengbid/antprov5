@@ -2,7 +2,7 @@ import { Button } from 'antd'
 import React, { useState } from 'react'
 import { connect } from 'dva'
 
-const Project4: React.Fc = (props) => {
+const Project4: React.Fc = (props: {onSuccess: (name: string) => void, dispatch: any}) => {
   const [name, setName] = useState('')
 
   const clickName = () => {
