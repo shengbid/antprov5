@@ -97,6 +97,15 @@ const EditTable: React.Fc = () => {
       key: 'state',
       dataIndex: 'state',
       valueType: 'select',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            whitespace: true,
+            message: '此项是必选项',
+          },
+        ]
+      },
       valueEnum: {
         all: { text: '全部', status: 'Default' },
         open: {
@@ -117,14 +126,14 @@ const EditTable: React.Fc = () => {
       title: '文件',
       dataIndex: 'fileList',
       editable: false,
-      render: (val: any) => (
-        <div>
-          {val && val.length ? val.map(item => 
+      render: (val: any) => {
+        return <div>
+          {val !== '-' && val.length ? val.map(item => 
             <div key={item.uid} style={{width: '100px', height: '50px', overflow: 'hidden'}}>
               <img style={{width: '100%'}} src={item.url} />
             </div>) : ''}
         </div>
-      )
+      }
     },
     {
       title: '操作',
