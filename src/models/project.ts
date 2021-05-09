@@ -1,11 +1,14 @@
+ export interface stateProp {
+  update: string
+ }
+ 
  const projectModel = {
   namespace: 'project',
   state: {
     update: ''
   },
   reducers: {
-    'changeState': function(state, { payload: name }) {
-      console.log('sate', name)
+    changeState: (state: stateProp, { payload: name }: {payload: {name: string}}) => {
       return {
         update: name
       }
