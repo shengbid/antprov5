@@ -61,6 +61,12 @@
     component: './spanTable',
   },
   {
+    name: 'Form表单',
+    icon: 'FileAddOutlined',
+    path: '/formInput',
+    component: './formInput',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
