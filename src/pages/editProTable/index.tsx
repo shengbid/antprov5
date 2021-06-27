@@ -53,7 +53,7 @@ const EditTable: React.Fc = () => {
       },
       {
         id: 624691229,
-        title: '活动名称二',
+        title: '',
         decs: '这个活动真好玩',
         state: 'closed',
         created_at: '2020-05-26T08:19:22Z',
@@ -85,9 +85,9 @@ const EditTable: React.Fc = () => {
             message: '最长为 16 位',
           },
           {
-            min: 6,
+            min: 2,
             whitespace: true,
-            message: '最小为 6 位',
+            message: '最小为 2 位',
           },
         ],
       },

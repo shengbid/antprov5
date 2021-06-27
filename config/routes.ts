@@ -55,6 +55,12 @@
     component: './editProTable',
   },
   {
+    name: '表格合并',
+    icon: 'table',
+    path: '/spanTable',
+    component: './spanTable',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
