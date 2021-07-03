@@ -61,10 +61,17 @@
     component: './spanTable',
   },
   {
+    name: '产品列表',
+    icon: 'BarsOutlined',
+    path: '/product/list',
+    component: './product/list',
+  },
+  {
     name: 'Form表单',
     icon: 'FileAddOutlined',
-    path: '/formInput',
-    component: './formInput',
+    path: '/product/add',
+    component: './product/addProduct',
+    hideInMenu: true
   },
   {
     path: '/',

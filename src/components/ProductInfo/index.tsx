@@ -1,5 +1,5 @@
-import React from 'react'
-import { Collapse, Form, Button, Input, Select, 
+import React, { useEffect } from 'react'
+import { Collapse, Form, Input, Select, 
   Row, Col, DatePicker } from 'antd'
 import moment from 'moment'
 
@@ -9,8 +9,19 @@ const { TextArea } = Input
 
 const dateFormat = 'YYYY-MM-DD'
 
-const formInput = () => {
+export type productProps = {
+  infoData?: any
+}
+
+const formInput = ({infoData}: productProps) => {
   const [form] = Form.useForm()
+
+ useEffect(() => {
+   if (infoData) {
+    form.setFieldsValue({...infoData,
+      establishedTime: moment(infoData.establishedTime)})
+  }
+ }, [])
 
   const companyOptions = [
     {
@@ -92,7 +103,7 @@ const formInput = () => {
                   label="公司成立时间" 
                   name="establishedTime"
                   rules={[{required: true, message: '请输入公司成立时间'}]}>
-                   <DatePicker style={{width: '100%'}} format={dateFormat} />
+                  <DatePicker style={{width: '100%'}} format={dateFormat} />
                 </Form.Item>
               </Col>
             </Row>
@@ -118,9 +129,6 @@ const formInput = () => {
           
         </Panel>
       </Collapse>
-      <div>
-        <Button type="primary">提交</Button>
-      </div>
     </div>
   )
 }
