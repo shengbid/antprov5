@@ -1,9 +1,8 @@
 import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
-import { Collapse, Form, Input, Select, 
+import { Form, Input, Select, 
   Row, Col, DatePicker } from 'antd'
 import moment from 'moment'
 
-const { Panel } = Collapse
 const { Option } = Select
 const { TextArea } = Input
 
@@ -64,78 +63,68 @@ const formInput = ({infoData}: productProps, ref: any) => {
   }
   return (
     <div>
-      <Collapse defaultActiveKey={['1']}>
-        <Panel header="公司信息" key="1">
-          <Form
-            form={form}
-            layout="vertical"
-          >
-            <Row justify="space-between">
-              <Col span={7}>
-                <Form.Item 
-                  label="公司名称" 
-                  name="companyId"
-                  rules={[{required: true, message: '请选择公司名称'}]}>
-                  <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="请选择公司名称"
-                    onChange={changeCompany}
-                    filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    {companyOptions.map(item => 
-                      <Option 
-                      key={item.id} 
-                      value={item.id}
-                      companyCode={item.companyCode}
-                      establishedtime={item.establishedTime}
-                      desc={item.desc}
-                      >{item.companyName}</Option>
-                    )}
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col span={7}>
-                <Form.Item 
-                  label="公司编号" 
-                  name="companyCode"
-                  rules={[{required: true, message: '请输入公司编号'}]}>
-                  <Input disabled placeholder="请输入公司编号" />
-                </Form.Item>
-              </Col>
-              <Col span={7}>
-                <Form.Item 
-                  label="公司成立时间" 
-                  name="establishedTime"
-                  rules={[{required: true, message: '请输入公司成立时间'}]}>
-                  <DatePicker style={{width: '100%'}} format={dateFormat} />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={24}>
-                <Form.Item
-                  label="公司描述" 
-                  name="desc"
-                  rules={[{required: true, message: '请输入公司描述'}]}>
-                  <TextArea
-                    placeholder="请输入公司描述"
-                    autoSize={{ minRows: 2, maxRows: 6 }}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
-        </Panel>
-        <Panel header="产品信息" key="2">
-          
-        </Panel>
-        <Panel header="业务信息" key="3">
-          
-        </Panel>
-      </Collapse>
+      <Form
+        form={form}
+        layout="vertical"
+      >
+        <Row justify="space-between">
+          <Col span={7}>
+            <Form.Item 
+              label="公司名称" 
+              name="companyId"
+              rules={[{required: true, message: '请选择公司名称'}]}>
+              <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="请选择公司名称"
+                onChange={changeCompany}
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                {companyOptions.map(item => 
+                  <Option 
+                  key={item.id} 
+                  value={item.id}
+                  companyCode={item.companyCode}
+                  establishedtime={item.establishedTime}
+                  desc={item.desc}
+                  >{item.companyName}</Option>
+                )}
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={7}>
+            <Form.Item 
+              label="公司编号" 
+              name="companyCode"
+              rules={[{required: true, message: '请输入公司编号'}]}>
+              <Input disabled placeholder="请输入公司编号" />
+            </Form.Item>
+          </Col>
+          <Col span={7}>
+            <Form.Item 
+              label="公司成立时间" 
+              name="establishedTime"
+              rules={[{required: true, message: '请输入公司成立时间'}]}>
+              <DatePicker style={{width: '100%'}} format={dateFormat} />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <Form.Item
+              label="公司描述" 
+              name="desc"
+              rules={[{required: true, message: '请输入公司描述'}]}>
+              <TextArea
+                placeholder="请输入公司描述"
+                autoSize={{ minRows: 2, maxRows: 6 }}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form>
     </div>
   )
 }
