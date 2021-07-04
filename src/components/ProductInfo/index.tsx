@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
 import { Collapse, Form, Input, Select, 
   Row, Col, DatePicker } from 'antd'
 import moment from 'moment'
@@ -13,8 +13,15 @@ export type productProps = {
   infoData?: any
 }
 
-const formInput = ({infoData}: productProps) => {
+const formInput = ({infoData}: productProps, ref: any) => {
   const [form] = Form.useForm()
+
+  // 暴露组件的方法
+  useImperativeHandle(ref, () => ({
+    getForm: () => {
+      return form
+    }
+  }))
 
  useEffect(() => {
    if (infoData) {
@@ -133,4 +140,5 @@ const formInput = ({infoData}: productProps) => {
   )
 }
 
-export default formInput
+// 通过forwardRef传递
+export default forwardRef(formInput)

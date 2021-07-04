@@ -122,6 +122,7 @@ export default () => {
             setProductVisible(true)
             setInfoData({
               companyName: '大米科技有限公司',
+              companyId: 1,
               id: 1,
               companyCode: '1273883',
               desc: '这个公司非常棒',
