@@ -189,7 +189,12 @@ export default () => {
           icon={<PlusOutlined />} 
           type="primary"
           onClick={()=>{
-            history.push('/product/add')
+            history.push({
+              pathname: '/product/add',
+              query: {
+                name: '跳转的参数'
+              }
+            })
           }}
         >
           新建

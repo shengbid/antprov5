@@ -1,11 +1,19 @@
 import React, { useRef } from 'react'
 import ProductInfo from '@/components/ProductInfo'
 import { Button, Collapse } from 'antd'
-import { history } from 'umi'
+import { history, useLocation } from 'umi'
 
 const { Panel } = Collapse
 
-const formInput = () => {
+const formInput = (props: any) => {
+  const params = useLocation()
+  console.log(props)
+  console.log(params) 
+  // hash: ""
+  // key: "inw4iu"
+  // pathname: "/product/add"
+  // query: {name: "跳转的参数"}
+  // search: "name=%E8%B7%B3%E8%BD%AC%E7%9A%84%E5%8F%82%E6%95%B0"
 
   const childRef = useRef<any>()
 
